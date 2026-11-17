@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Dynamic to list
+    </title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(190, 235, 235);
+            font-family: arial;
+            height: 50vh;
+        }
+
+        input {
+            margin: 5px;
+            paddin: 10px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px;
+            background-color: rgb(77, 128, 182);
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .container {
+            margin: 5px;
+            padding: 10px;
+            background-color: rgb(115, 195, 222);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>to do list</h2>
+        <input type="text" id="task" placeholder="enter task">
+        <button onclick="addTask()">Add task</button>
+
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+        function addTask() {
+            let input = document.getElementById("task");
+            if (input.value === "") {
+                alert("enter a task");
+                return;
+            }
+            let li = document.createElement("li");
+            li.innerHTML = input.value +
+                '<button onclick="completeTask(this)">Done</button>' +
+                '<button onclick="deleteTask(this)">Delete</button>';
+            document.getElementById("taskList").appendChild(li);
+            input.value = "";
+        }
+        function completeTask(btn){
+            btn.parentElement.classList.toggle("done");
+        }
+        function deleteTask(btn)
+        {
+            btn.parentElement.remove();
+        }
+    </script>
+</body>
+
+</html>
